@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/auth";
+//import firebase from 'firebase/app'; // uncomment if you want to use GoogleProvider for authentication
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,7 @@ export class AuthService {
   login(email: string, password: string): Promise<boolean>
   {
     return this.afAuth
+    //.signInWithPopup(new firebase.auth.GoogleAuthProvider())  // Google Authentication
     .signInWithEmailAndPassword(email, password)
     .then(res => {
         console.log('Authentication is successful with ' + res.user?.email);
@@ -55,7 +57,8 @@ export class AuthService {
 
   logout(): void
   {
-    this.afAuth.signOut()
+    this.afAuth
+    .signOut()
     .then(() => {
         this.firebaseAuthStateSubscription.unsubscribe();
         this.removeLoggedInFlag();
