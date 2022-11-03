@@ -94,7 +94,8 @@
 		"username": "Felhasználónév",
 		"password": "Jelszó",
 		"loginbutton": "Bejelentkezés",
-		"logoutbutton": "Kijelentkezés"
+		"logoutbutton": "Kijelentkezés",
+		"loginGoogleButton": "Bejelentkezés Google fiókkal"
 	}
 
 }

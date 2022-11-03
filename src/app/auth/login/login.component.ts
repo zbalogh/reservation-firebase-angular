@@ -58,10 +58,24 @@ export class LoginComponent implements OnInit {
     this.message = message;
   }
 
-  login() {
+  loginWithUserAndPassword()
+  {
     this.setMessage(this.authInProgress);
+    const p = this.authService.loginWithUserAndPassword(this.username, this.password);
+    this.handleLoginProcess(p);
+  }
 
-    this.authService.login(this.username, this.password).then(() => {
+  loginWithGoogle()
+  {
+    this.setMessage(this.authInProgress);
+    const p = this.authService.loginWithGoogle();
+    this.handleLoginProcess(p);
+  }
+
+  private handleLoginProcess(loginPromise: Promise<boolean>)
+  {
+    loginPromise
+    .then(() => {
       // clear the message
       this.setMessage('');
 
@@ -81,8 +95,10 @@ export class LoginComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
-    this.initMessage();
+    this.authService.logout()
+    .then(() => {
+        this.initMessage();
+    });
   }
 
   isLoggedin() {

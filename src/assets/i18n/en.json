@@ -94,7 +94,8 @@
 		"username": "Username",
 		"password": "Password",
 		"loginbutton": "Login",
-		"logoutbutton": "Logout"
+		"logoutbutton": "Logout",
+		"loginGoogleButton": "Login with Google Account"
 	}
 
 }

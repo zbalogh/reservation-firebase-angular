@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/auth";
-//import firebase from 'firebase/app'; // uncomment if you want to use GoogleProvider for authentication
+import firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -39,30 +39,50 @@ export class AuthService {
   /**
    * Authenticate the user with the given username and password.
    */
-  login(email: string, password: string): Promise<boolean>
+  loginWithUserAndPassword(email: string, password: string): Promise<boolean>
   {
-    return this.afAuth
-    //.signInWithPopup(new firebase.auth.GoogleAuthProvider())  // Google Authentication
-    .signInWithEmailAndPassword(email, password)
+    const p = this.afAuth.signInWithEmailAndPassword(email, password);
+    return this.handleLoginProcess(p);
+  }
+
+  /**
+   * Authenticate the user with Google account 
+   */
+  loginWithGoogle(): Promise<boolean>
+  {
+    const p = this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    return this.handleLoginProcess(p);
+  }
+
+  private handleLoginProcess(loginPromise: Promise<firebase.auth.UserCredential>): Promise<boolean>
+  {
+    return loginPromise
     .then(res => {
         console.log('Authentication is successful with ' + res.user?.email);
         this.setLoggedInFlag(true);
         return true;
     })
     .catch(err => {
-        console.log('Error during the authentication: ', err.message);
+        console.log('Error during the authentication: ', err?.message);
         return false;
     });
   }
 
-  logout(): void
+  logout(): Promise<boolean>
   {
-    this.afAuth
+    return this.afAuth
     .signOut()
     .then(() => {
         this.firebaseAuthStateSubscription.unsubscribe();
         this.removeLoggedInFlag();
-    });
+        return true;
+    })
+    .catch(err => {
+      console.log('Error during the logout process: ', err?.message);
+      this.firebaseAuthStateSubscription.unsubscribe();
+      this.removeLoggedInFlag();
+      return false;
+  });
   }
 
   isUserLoggedIn(): boolean

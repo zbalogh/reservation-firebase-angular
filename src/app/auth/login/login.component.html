@@ -25,10 +25,15 @@
     </form>
 
     <p>
-    <button class="btn btn-primary" (click)="login()"  *ngIf="!isLoggedin()" [disabled]="!loginForm.form.valid">{{ 'loginPage.loginbutton' | translate }}</button>
+    <button class="btn btn-primary" (click)="loginWithUserAndPassword()" *ngIf="!isLoggedin()" [disabled]="!loginForm.form.valid">{{ 'loginPage.loginbutton' | translate }}</button>
     <button class="btn btn-primary" (click)="logout()" *ngIf="isLoggedin()">{{ 'loginPage.logoutbutton' | translate }}</button>
     </p>
-
-
-
+    
+    <div *ngIf="!isLoggedin()">
+        <hr>
+        <br>
+        <button class="btn btn-primary" (click)="loginWithGoogle()" *ngIf="!isLoggedin()">{{ 'loginPage.loginGoogleButton' | translate }}</button>
+        <br>
+    </div>
+    
 </div>
