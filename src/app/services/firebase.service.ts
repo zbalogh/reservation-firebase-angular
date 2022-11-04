@@ -17,14 +17,18 @@ export class FirebaseService {
 
   constructor(private fdb: AngularFirestore) {
     // get the reference to the given firebase collection
-    this.reservationRef = fdb.collection(this.collectionDbPth);
+    this.reservationRef = fdb.collection<DeskReservation>(this.collectionDbPth);
   }
 
   getReservations(): Observable<DeskReservation[]>
   {
     // get all documents from the 'reservations' collection
     // transform the DocumentChangeAction to the corresponding data object which is received in the payload
-    return this.reservationRef.snapshotChanges()
+    return this.fdb.collection<DeskReservation>(this.collectionDbPth, ref => {
+      // define the orderBy for search: we order the list by 'deskNumber' attribute
+      return ref.orderBy('deskNumber', 'asc')
+    })
+    .snapshotChanges()
       .pipe(
         map(changes =>
           changes.map(c => {
