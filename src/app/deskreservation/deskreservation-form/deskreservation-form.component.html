@@ -28,56 +28,56 @@
         </div>
 
         <div class="col-sm-12">
-        <form (ngSubmit)="onSubmit(reservationForm)" #reservationForm="ngForm">
-        
-        <div class="form-row">
-            <div class="form-group col-md-6">
-            <label for="inputLastName">{{ 'reservationPage.lastname' | translate }}</label>
-            <input type="text" class="form-control" id="inputLastName" name="inputLastName"
-                placeholder="{{ 'reservationPage.lastname' | translate }}"
-                required
-                [(ngModel)]="deskReservation.lastname">
-            </div>
-            
-            <div class="form-group col-md-6">
-            <label for="inputFirstName">{{ 'reservationPage.firstname' | translate }}</label>
-            <input type="text" class="form-control" id="inputFirstName" name="inputFirstName"
-                placeholder="{{ 'reservationPage.firstname' | translate }}"
-                required
-                [(ngModel)]="deskReservation.firstname">
-            </div>
-        </div>
-        
-        <div class="form-row">
-            <div class="form-group col-md-6">
-            <label for="inputEmail">{{ 'reservationPage.email' | translate }}</label>
-            <input type="email" class="form-control" id="inputEmail"name="inputEmail"
-                placeholder="{{ 'reservationPage.email' | translate }}"
-                required
-                [(ngModel)]="deskReservation.email">
-            </div>
-            
-            <div class="form-group col-md-6">
-            <label for="inputTelephoneNumber">{{ 'reservationPage.phonenumber' | translate }}</label>
-            <input type="text" class="form-control" id="inputTelephoneNumber" name="inputTelephoneNumber"
-                placeholder="{{ 'reservationPage.phonenumber' | translate }}"
-                required
-                [(ngModel)]="deskReservation.telephone">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <div class="form-check">
-            <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="checkboxAccept" name="checkboxAccept" [(ngModel)]="checkboxAccept">
-                {{ 'reservationPage.acceptTerms' | translate }}
-            </label>
-            </div>
-        </div>
-        
-        <button type="submit" class="btn btn-primary" [disabled]="!reservationForm.form.valid || !checkboxAccept">{{ 'reservationPage.reserveButton' | translate }}</button>
-        </form>
-        <br>
+			<form (ngSubmit)="onSubmit(reservationForm)" #reservationForm="ngForm">
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+				<label for="inputLastName">{{ 'reservationPage.lastname' | translate }}</label>
+				<input type="text" class="form-control" id="inputLastName" name="inputLastName"
+					placeholder="{{ 'reservationPage.lastname' | translate }}"
+					required
+					[(ngModel)]="deskReservation.lastname">
+				</div>
+				
+				<div class="form-group col-md-6">
+				<label for="inputFirstName">{{ 'reservationPage.firstname' | translate }}</label>
+				<input type="text" class="form-control" id="inputFirstName" name="inputFirstName"
+					placeholder="{{ 'reservationPage.firstname' | translate }}"
+					required
+					[(ngModel)]="deskReservation.firstname">
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+				<label for="inputEmail">{{ 'reservationPage.email' | translate }}</label>
+				<input type="email" class="form-control" id="inputEmail"name="inputEmail"
+					placeholder="{{ 'reservationPage.email' | translate }}"
+					required
+					[(ngModel)]="deskReservation.email">
+				</div>
+				
+				<div class="form-group col-md-6">
+				<label for="inputTelephoneNumber">{{ 'reservationPage.phonenumber' | translate }}</label>
+				<input type="text" class="form-control" id="inputTelephoneNumber" name="inputTelephoneNumber"
+					placeholder="{{ 'reservationPage.phonenumber' | translate }}"
+					required
+					[(ngModel)]="deskReservation.telephone">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div class="form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" type="checkbox" id="checkboxAccept" name="checkboxAccept" [(ngModel)]="checkboxAccept">
+					{{ 'reservationPage.acceptTerms' | translate }}
+				</label>
+				</div>
+			</div>
+			
+			<button type="submit" class="btn btn-primary" [disabled]="!reservationForm.form.valid || !checkboxAccept">{{ 'reservationPage.reserveButton' | translate }}</button>
+			</form>
+			<br>
         </div>
 
     </div>
